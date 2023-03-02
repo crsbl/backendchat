@@ -2,7 +2,7 @@ const httpServer = require("http").createServer();
 
 let messages = [
   {
-    colorCode: "aqua",
+    colorCode: "#2b4b66",
     name: "cristobal",
     message: "hola",
   },
