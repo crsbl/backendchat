@@ -2,13 +2,13 @@ const httpServer = require("http").createServer();
 
 let messages = [
   {
-    colorCode: "rgb(142, 158, 170)",
+    colorCode: "aqua",
     name: "cristobal",
     message: "hola",
   },
 ];
+let countUsers = 0;
 
-/* let countUser =0; */
 
 let server = httpServer.listen(process.env.PORT || 3001, () => {
   console.log("...");
@@ -20,11 +20,8 @@ let io = require("socket.io")(server, {
 });
 
 io.on("connection", function (socket) {
-  console.log("usuario conectado", socket.id);
-/*   countUser= countUser+1;
-  console.log(countUser);
-  socket.emit("countUser", countUser); */
-
+  countUsers =io.sockets.sockets.size
+  io.sockets.emit('updateNumConnections', countUsers);
   socket.emit("messagesUsers", messages);
 
   socket.on("sendMessages", (text) => {
@@ -55,8 +52,7 @@ io.on("connection", function (socket) {
   });
 
   socket.on("disconnect", (text) => {
-    console.log("usuario desconectado");
-/*     countUser= countUser-1;
-    socket.emit("countUser", countUser); */
+    countUsers =io.sockets.sockets.size
+    io.sockets.emit('updateNumConnections', countUsers);
   });
 });
