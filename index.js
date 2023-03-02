@@ -2,8 +2,8 @@ const httpServer = require("http").createServer();
 
 let messages = [
   {
-    colorCode: "#2b4b66",
-    name: "cristobal",
+    colorCode: "rgb(71, 75, 94)",
+    name: "Admin",
     message: "hola",
   },
 ];
